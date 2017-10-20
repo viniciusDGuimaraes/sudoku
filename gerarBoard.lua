@@ -52,11 +52,9 @@ function gerarRandomNum(sudoku, index)
 	if #candidatos == 0 then
 		randomNum = -1
 	else
-		n = math.random(#candidatos)
-		randomNum = candidatos[n]
+		randomNum = candidatos[math.random(#candidatos)]
 		removeItem(candidatos, randomNum)
 	end
-	print(randomNum)
 	return randomNum
 end
 
@@ -71,7 +69,7 @@ function gerarBoard()
 		randomNum = gerarRandomNum(sudoku, i)
 		if randomNum == -1 then
 			for i = 1, 81 do
-				table.insert(sudoku, 0)
+				sudoku[i] = 0
 			end
 			i = 0
 		else
@@ -82,7 +80,12 @@ function gerarBoard()
 	return sudoku
 end
 
-sudoku = gerarBoard()
-for i = 1, #sudoku, 9 do
-	print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' .. sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
+function printSudoku()
+	for i = 1, #sudoku, 9 do
+		print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' .. sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
+	end
 end
+
+math.randomseed(os.time())
+sudoku = gerarBoard()
+printSudoku()
