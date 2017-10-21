@@ -92,12 +92,45 @@ function gerarBoard()
 	return sudoku
 end
 
+function retirarNums()
+	local quantVazios = math.random(40,42)
+	local cont = 0
+	while cont < quantVazios do
+		local index = math.random(81)
+
+		while sudoku[index] == 0  do
+			index = math.random(81)
+		end
+
+		sudoku[index] = 0
+		cont = cont + 1
+	end
+	return sudoku
+end
+
 function printSudoku()
 	for i = 1, #sudoku, 9 do
 		print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' .. sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
 	end
 end
 
+inicio = os.time()
 math.randomseed(os.time())
-sudoku = gerarBoard()
+
+sudokuResolvido = gerarBoard()
+
+sudoku = {}
+
+for i = 1, 81 do
+	table.insert(sudoku, 0)
+end
+
+for i = 1, 81 do
+	sudoku[i] = sudokuResolvido[i]
+end
+
+sudoku = retirarNums()
+
 printSudoku()
+
+print(os.time() - inicio)
