@@ -110,7 +110,9 @@ end
 
 function printSudoku()
 	for i = 1, #sudoku, 9 do
-		print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' .. sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
+		print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. 
+		      sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' ..
+		      sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
 	end
 end
 
