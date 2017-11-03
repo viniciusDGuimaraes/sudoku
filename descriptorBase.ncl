@@ -95,7 +95,7 @@
 			<descriptor id="dsQuadro98" region="rgQuadro98" focusIndex="80" moveUp="71" moveDown="82" moveLeft="79" moveRight="81" focusBoardColor="red"/>
 			<descriptor id="dsQuadro99" region="rgQuadro99" focusIndex="81" moveUp="72" moveDown="82" moveLeft="80" moveRight="82" focusBoardColor="red"/>
 
-			<descriptor id="dsBtnVoltar" region="rgBtnVoltar" moveUp="77" focusBoardColor="red" focusIndex="82">
+			<descriptor id="dsBtnVoltar" region="rgBtnVoltar" moveUp="77" focusBoardColor="red" focusIndex="82"/>
 		</descriptorBase>
 	</head>
 </ncl>

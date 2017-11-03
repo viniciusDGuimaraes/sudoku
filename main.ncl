@@ -65,7 +65,7 @@
 					<region id="rgQuadro68" top="55%" left="77%" width="11%" height="11%"/> 
 					<region id="rgQuadro69" top="55%" left="88%" width="11%" height="11%"/>
 					<!-- Setima linha -->
-					<region id="rgQuadro71" top="66%" width="11%" height="11%"> 
+					<region id="rgQuadro71" top="66%" width="11%" height="11%"/> 
 					<region id="rgQuadro72" top="66%" left="11%" width="11%" height="11%"/> 
 					<region id="rgQuadro73" top="66%" left="22%" width="11%" height="11%"/> 
 					<region id="rgQuadro74" top="66%" left="33%" width="11%" height="11%"/> 
@@ -99,17 +99,14 @@
 			</region>
 		</regionBase>
 		<descriptorBase>
-			<importBase documentURI="descriptorBase.ncl">
+			<importBase documentURI="descriptorBase.ncl"/>
 		</descriptorBase>
 		<connectorBase>
 			
 		</connectorBase>
 	</head>
 	<body>
-
-		<!--<media id="tabuleiro" src="sudoku_board.bmp" descriptor="dsBoard">-->
-
-	</link>
+		<media id="tabuleiro" src="sudoku_board.bmp" descriptor="dsBoard"/>
 
 	</body>
 </ncl>
