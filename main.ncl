@@ -2,8 +2,8 @@
 <ncl id="main" xmlns="http://www.ncl.org.br/NCL3.0/EDTVProfile">
 	<head>
 		<regionBase>
-			<region id="rgFullScreen" zIndex="1"/>
-			<region id="rgBoard" top="5%" left="5%" width="90%" height="90%" zIndex="2">
+			<region id="rgFullScreen" left="0" top="0" width="800" height="600" zIndex="1"/>
+			<region id="rgBoard" top="25" left="125" width="550" height="550" zIndex="2">
 				<!-- Primeira Linha -->
 				<region id="rgQuadro11" top="1%" width="10%" height="10%"/> 
 				<region id="rgQuadro12" top="1%" left="11%" width="10%" height="10%"/> 
@@ -204,11 +204,11 @@
 		<port id="pTabuleiro" component="tabuleiro"/>
 		<media id="tabuleiro" src="Imagens/sudoku_board.bmp" descriptor="dsBoard"/>
 
-		<media id="gerarBoard" src="gerarBoard.lua"/>
+        <!--<media id="gerarBoard" src="gerarBoard.lua" descriptor="dsLuaBase"/>
 
 		<link xconnector="onBeginStart">
 			<bind role="onBegin" component="tabuleiro"/>
 			<bind role="start" component="gerarBoard"/>
-		</link>
+		</link>-->
 	</body>
 </ncl>
