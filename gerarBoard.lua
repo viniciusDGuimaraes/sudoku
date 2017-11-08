@@ -125,7 +125,18 @@ end
 
 sudoku = retirarNums()
 
-local img = canvas:new('Imagens/1.png')
+primeiroQuadrante = "Imagens/" .. sudokuResolvido[1] .. ".png"
+segundoQuadrante = "Imagens/" .. sudokuResolvido[2] .. ".png"
+terceiroQuadrante = "Imagens/" .. sudokuResolvido[3] .. ".png"
+quartoQuadrante = "Imagens/" .. sudokuResolvido[4] .. ".png"
+quintoQuadrante = "Imagens/" .. sudokuResolvido[5] .. ".png"
+sextoQuadrante = "Imagens/" .. sudokuResolvido[6] .. ".png"
+setimoQuadrante = "Imagens/" .. sudokuResolvido[7] .. ".png"
+oitavoQuadrante = "Imagens/" .. sudokuResolvido[8] .. ".png"
+nonoQuadrante = "Imagens/" .. sudokuResolvido[9] .. ".png"
+
+
+local img = canvas:new(primeiroQuadrante)
 local dx, dy = img:attrSize()
 local banana = { img=img, x=0, y=0, dx=dx, dy=dy }
 
@@ -133,9 +144,52 @@ canvas:attrColor('white')
 canvas:drawRect('fill', 0,0, canvas:attrSize())
 canvas:compose(banana.x, banana.y, banana.img)
 
-local img2 = canvas:new('Imagens/2.png')
+local img2 = canvas:new(segundoQuadrante)
 local dx, dy = img:attrSize()
-local banana2 = { img2=img2, x=55, y=0, dx=dx, dy=dy }
+local banana2 = { img2=img2, x=61, y=0, dx=dx, dy=dy }
 
 canvas:compose(banana2.x, banana2.y, banana2.img2)
+
+local img3 = canvas:new(terceiroQuadrante)
+local dx, dy = img:attrSize()
+local banana3 = { img3=img3, x=122, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana3.x, banana3.y, banana3.img3)
+
+local img4 = canvas:new(quartoQuadrante)
+local dx, dy = img:attrSize()
+local banana4 = { img4=img4, x=183, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana4.x, banana4.y, banana4.img4)
+
+local img5 = canvas:new(quintoQuadrante)
+local dx, dy = img:attrSize()
+local banana5 = { img5=img5, x=244, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana5.x, banana5.y, banana5.img5)
+
+local img6 = canvas:new(sextoQuadrante)
+local dx, dy = img:attrSize()
+local banana6 = { img6=img6, x=305, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana6.x, banana6.y, banana6.img6)
+
+local img7 = canvas:new(setimoQuadrante)
+local dx, dy = img:attrSize()
+local banana7 = { img7=img7, x=366, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana7.x, banana7.y, banana7.img7)
+
+local img8 = canvas:new(oitavoQuadrante)
+local dx, dy = img:attrSize()
+local banana8 = { img8=img8, x=427, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana8.x, banana8.y, banana8.img8)
+
+local img9 = canvas:new(nonoQuadrante)
+local dx, dy = img:attrSize()
+local banana9 = { img9=img9, x=488, y=0, dx=dx, dy=dy }
+
+canvas:compose(banana9.x, banana9.y, banana9.img9)
+
 canvas:flush()

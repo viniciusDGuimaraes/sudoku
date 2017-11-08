@@ -3,7 +3,7 @@
 	<head>
 		<regionBase>
 			<region id="rgFullScreen" left="0" top="0" width="800" height="600" zIndex="0"/>
-			<region id="rgBoard" top="25" left="125" width="550" height="550" zIndex="1">
+			<region id="rgBoard" top="25" left="125" width="549" height="549" zIndex="1">
 				<region id="rgQuadro11" top="1%" width="10%" height="10%"/> 
 			</region>
 		</regionBase>
