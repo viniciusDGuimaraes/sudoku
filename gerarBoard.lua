@@ -132,7 +132,10 @@ for i = 1, #sudoku, 9 do
 end
 
 canvas:attrColor('white')
-canvas:drawRect('frame', 0,0, canvas:attrSize())
+canvas:drawRect('fill', 0,0, canvas:attrSize())
+
+local img = canvas:new("Imagens/sudoku_board.bmp")
+canvas:compose(0, 0, img)
 
 for i = 1, 81 do
 	local linha = math.floor((i-1)/9)
@@ -147,6 +150,12 @@ canvas:compose(cursor.x, cursor.y, cursor.img)
 canvas:flush()
 
 function redraw()
+	canvas:attrColor('white')
+	canvas:drawRect('fill', 0,0, canvas:attrSize())
+
+	local img = canvas:new("Imagens/sudoku_board.bmp")
+	canvas:compose(0, 0, img)
+
 	for i = 1, 81 do
 		local linha = math.floor((i-1)/9)
 		local coluna = (i-1) % 9
@@ -155,13 +164,15 @@ function redraw()
 		canvas:compose(num.x, num.y, num.img)
 	end
 	local img = canvas:new('Imagens/cursor.gif')
-	local cursor = { img=img, x=244, y=244 }
+	local cursor = { img=img, x=cursor.x, y=cursor.y }
 	canvas:compose(cursor.x, cursor.y, cursor.img)
 	canvas:flush()
 end
 
 function handler(evt)
+	print('entrou na function')
 	if (evt.class == 'key') and (evt.type == 'press') then
+		print('entrou no primeiro if')
 		if evt.key == 'CURSOR_UP' then
 			if cursor.y > 0 then
 				cursor.y = cursor.y - 61
@@ -190,64 +201,57 @@ function handler(evt)
 	end
 	redraw()
 
-	if evt.key == 'ENTER' then
-		print('Enter')
-	end
+--	if evt.key == 'ENTER' then
+--		print('Enter')
+--	end
 
 	if evt.key == '1' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 1
-		redraw()
 	elseif evt.key == '2' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 2
-		redraw()
 	elseif evt.key == '3' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 3
-		redraw()
 	elseif evt.key == '4' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 4
-		redraw()
 	elseif evt.key == '5' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 5
-		redraw()
 	elseif evt.key == '6' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 6
-		redraw()
 	elseif evt.key == '7' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 7
-		redraw()
 	elseif evt.key == '8' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 8
-		redraw()
 	elseif evt.key == '9' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 9
-		redraw()
 	end
+	redraw()
+	print('------------------------------------------')
 end
 event.register(handler)

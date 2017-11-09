@@ -9,20 +9,17 @@
 		<descriptorBase>
 			<descriptor id="dsFullScreen" region="rgFullScreen"/>
 			<descriptor id="dsBoard" region="rgBoard"/>
-			<descriptor id="dsLua" region="rgLua"/>
+			<descriptor id="dsLua" region="rgLua" focusIndex="luaIdx"/>
 		</descriptorBase>
 		<connectorBase>
 			<causalConnector id="onBeginStart">
 				<simpleCondition role="onBegin"/>
 				<simpleAction role="start"/>
 			</causalConnector>
-			<causalConnector id="onKeySelectionStopNStartN">
+			<causalConnector id="onKeySelectionStopN">
 				<connectorParam name="keyCode"/>
 				<simpleCondition role="onSelection" key="$keyCode"/>
-				<compoundAction operator="seq">
-					<simpleAction role="stop" max="unbounded" qualifier="par"/>
-					<simpleAction role="start" max="unbounded" qualifier="par"/>
-				</compoundAction>
+				<simpleAction role="stop" max="unbounded" qualifier="par"/>
 			</causalConnector>
 		</connectorBase>
 	</head>
@@ -36,25 +33,24 @@
 		<port id="pTabuleiro" component="gerarBoard"/>
 		<media id="gerarBoard" src="gerarBoard.lua" descriptor="dsLua"/>
 		
-		<!--<port id="entryPoint" component="lua"/>
+		<port id="entryPoint" component="lua"/>
+
 		<media type="application/x-ginga-settings" id="programSettings">
-        	<property name="service.currentKeyMaster" value="luaIdx"/>
-		</media>-->
+			<property name="service.currentKeyMaster" value="luaIdx"/>
+		</media>
 
 		<link xconnector="onBeginStart">
 			<bind role="onBegin" component="tabuleiro"/>
 			<bind role="start" component="gerarBoard"/>
 		</link>
 
-		<link xconnector="onKeySelectionStopNStartN">
+		<link xconnector="onKeySelectionStopN">
 			<linkParam name="keyCode" value="BLUE"/>
 			<bind role="onSelection" component="tabuleiro"/>
 			<bind role="stop" component="gerarBoard"/>
+			<bind role="stop" component="programSettings"/>
 			<bind role="stop" component="tabuleiro"/>
 			<bind role="stop" component="fundo"/>
-			<bind role="start" component="gerarBoard"/>
-			<bind role="start" component="tabuleiro"/>
-			<bind role="start" component="fundo"/>
 		</link>
 	</body>
 </ncl>
