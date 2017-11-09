@@ -142,7 +142,7 @@ for i = 1, 81 do
 	canvas:compose(num.x, num.y, num.img)
 end
 local img = canvas:new('Imagens/cursor.gif')
-local cursor = { img=img, x=cursor.x, y=cursor.y }
+local cursor = { img=img, x=244, y=244 }
 canvas:compose(cursor.x, cursor.y, cursor.img)
 canvas:flush()
 
@@ -190,51 +190,64 @@ function handler(evt)
 	end
 	redraw()
 
+	if evt.key == 'ENTER' then
+		print('Enter')
+	end
+
 	if evt.key == '1' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 1
+		redraw()
 	elseif evt.key == '2' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 2
+		redraw()
 	elseif evt.key == '3' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 3
+		redraw()
 	elseif evt.key == '4' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 4
+		redraw()
 	elseif evt.key == '5' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 5
+		redraw()
 	elseif evt.key == '6' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 6
+		redraw()
 	elseif evt.key == '7' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 7
+		redraw()
 	elseif evt.key == '8' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 8
+		redraw()
 	elseif evt.key == '9' then
 		coluna = math.floor(cursor.x/61)
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
 		sudoku[index] = 9
+		redraw()
 	end
 end
 event.register(handler)

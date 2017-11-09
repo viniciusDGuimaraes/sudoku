@@ -9,7 +9,7 @@
 		<descriptorBase>
 			<descriptor id="dsFullScreen" region="rgFullScreen"/>
 			<descriptor id="dsBoard" region="rgBoard"/>
-			<descriptor id="dsLua" region="rgLua" focusIndex="luaIdx"/>
+			<descriptor id="dsLua" region="rgLua"/>
 		</descriptorBase>
 		<connectorBase>
 			<causalConnector id="onBeginStart">
@@ -36,9 +36,10 @@
 		<port id="pTabuleiro" component="gerarBoard"/>
 		<media id="gerarBoard" src="gerarBoard.lua" descriptor="dsLua"/>
 		
+		<!--<port id="entryPoint" component="lua"/>
 		<media type="application/x-ginga-settings" id="programSettings">
         	<property name="service.currentKeyMaster" value="luaIdx"/>
-		</media>
+		</media>-->
 
 		<link xconnector="onBeginStart">
 			<bind role="onBegin" component="tabuleiro"/>
