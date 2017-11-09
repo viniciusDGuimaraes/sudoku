@@ -18,6 +18,46 @@ function removeItem(tabela, valor)
 	end
 end
 
+function checkForVictory()
+	for linha = 1, 9 do
+		numeros = {-1}
+		for coluna = 1, 9 do
+			if contains(sudoku[(linha - 1) * 9 + coluna], numeros) then
+				return false
+			else
+				table.insert(numeros, sudoku[(linha - 1) * 9 + coluna])
+			end
+		end
+	end
+
+	for coluna = 1, 9 do
+		numeros = {-1}
+		for linha = 1, 9 do
+			if contains(sudoku[(linha - 1) * 9 + coluna], numeros) then
+				return false
+			else
+				table.insert(numeros, sudoku[(linha - 1) * 9 + coluna])
+			end
+		end
+	end
+
+	for x = 0, 8, 3 do
+		for y = 0, 8, 3 do
+			for _i = 0, 2 do
+				for _j = 0, 2 do
+					if contains(sudoku[(x + _i) * 9 + y + _j + 1], numeros) then
+						return false
+					else
+						table.insert(numeros, sudoku[(x + _i) * 9 +y + _j + 1])
+					end
+				end
+			end
+		end
+	end
+
+	return true
+end
+
 function gerarRandomNum(sudoku, index)
 	--N�meros poss�veis para inserir no board
 	local candidatos = {1, 2, 3, 4, 5, 6, 7, 8, 9}
@@ -125,10 +165,18 @@ end
 
 sudoku = retirarNums()
 
-for i = 1, #sudoku, 9 do
-	print(sudoku[i] .. ' ' .. sudoku[i+1] .. ' ' .. sudoku[i+2] .. ' ' .. 
-	sudoku[i+3] .. ' ' .. sudoku[i+4] .. ' ' .. sudoku[i+5] .. ' ' ..
-	sudoku[i+6] .. ' ' .. sudoku[i+7] .. ' ' .. sudoku[i+8])
+permitido = {}
+
+for i = 1, 81 do
+	if sudoku[i] == 0 then
+		table.insert(permitido,i)
+	end
+end
+
+for i = 1, #sudokuResolvido, 9 do
+	print(sudokuResolvido[i] .. ' ' .. sudokuResolvido[i+1] .. ' ' .. sudokuResolvido[i+2] .. ' ' .. 
+	sudokuResolvido[i+3] .. ' ' .. sudokuResolvido[i+4] .. ' ' .. sudokuResolvido[i+5] .. ' ' ..
+	sudokuResolvido[i+6] .. ' ' .. sudokuResolvido[i+7] .. ' ' .. sudokuResolvido[i+8])
 end
 
 canvas:attrColor('white')
@@ -144,7 +192,7 @@ for i = 1, 81 do
 	local num = { img=img, x=coluna*61, y=linha*61 }
 	canvas:compose(num.x, num.y, num.img)
 end
-local img = canvas:new('Imagens/cursor.gif')
+local img = canvas:new('Imagens/cursor.png')
 local cursor = { img=img, x=244, y=244 }
 canvas:compose(cursor.x, cursor.y, cursor.img)
 canvas:flush()
@@ -163,16 +211,14 @@ function redraw()
 		local num = { img=img, x=coluna*61, y=linha*61 }
 		canvas:compose(num.x, num.y, num.img)
 	end
-	local img = canvas:new('Imagens/cursor.gif')
+	local img = canvas:new('Imagens/cursor.png')
 	local cursor = { img=img, x=cursor.x, y=cursor.y }
 	canvas:compose(cursor.x, cursor.y, cursor.img)
 	canvas:flush()
 end
 
 function handler(evt)
-	print('entrou na function')
 	if (evt.class == 'key') and (evt.type == 'press') then
-		print('entrou no primeiro if')
 		if evt.key == 'CURSOR_UP' then
 			if cursor.y > 0 then
 				cursor.y = cursor.y - 61
@@ -201,57 +247,80 @@ function handler(evt)
 	end
 	redraw()
 
---	if evt.key == 'ENTER' then
---		print('Enter')
---	end
-
 	if evt.key == '1' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 1
+		if contains(index, permitido) then
+			sudoku[index] = 1
+		end
 	elseif evt.key == '2' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 2
+		if contains(index, permitido) then
+			sudoku[index] = 2
+		end
 	elseif evt.key == '3' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 3
+		if contains(index, permitido) then
+			sudoku[index] = 3
+		end
 	elseif evt.key == '4' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 4
+		if contains(index, permitido) then
+			sudoku[index] = 4
+		end
 	elseif evt.key == '5' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 5
+		if contains(index, permitido) then
+			sudoku[index] = 5
+		end
 	elseif evt.key == '6' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 6
+		if contains(index, permitido) then
+			sudoku[index] = 6
+		end
 	elseif evt.key == '7' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 7
+		if contains(index, permitido) then
+			sudoku[index] = 7
+		end
 	elseif evt.key == '8' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 8
+		if contains(index, permitido) then
+			sudoku[index] = 8
+		end
 	elseif evt.key == '9' then
-		coluna = math.floor(cursor.x/61)
+		coluna = (math.floor(cursor.x/61)) + 1
 		linha = math.floor(cursor.y/61)
 		index = (linha * 9) + coluna
-		sudoku[index] = 9
+		if contains(index, permitido) then
+			sudoku[index] = 9
+		end
+	elseif evt.key == '0' then
+		coluna = (math.floor(cursor.x/61)) + 1
+		linha = math.floor(cursor.y/61)
+		index = (linha * 9) + coluna
+		if contains(index, permitido) then
+			sudoku[index] = 0
+		end
 	end
 	redraw()
-	print('------------------------------------------')
+	if checkForVictory() then
+		print('Você venceu')
+	end
 end
 event.register(handler)
